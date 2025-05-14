@@ -343,7 +343,7 @@ def generar_laberinto_con_multiples_rutas(dim, num_rutas_deseadas, max_intentos=
     return laberinto, rutas
 
 
-# Bloque principal modificado
+# Bloque principal
 if __name__ == "__main__":
     while True:
         dim = 10
@@ -381,36 +381,3 @@ if __name__ == "__main__":
         if seguir.lower() != 's':
             print("👋 Saliendo del generador de laberintos. ¡Hasta la próxima!")
             break
-
-# Para demostración, ejecutemos una vez sin el bucle interactivo
-dim = 10
-num_rutas_deseadas = 3
-print("\n🔄 Generando laberinto de dimension 10x10 con rutas diferentes...")
-
-# Usar la nueva función para generar un laberinto con múltiples rutas
-laberinto, rutas = generar_laberinto_con_multiples_rutas(dim, num_rutas_deseadas)
-
-# Encontrar la ruta más corta
-indice_mas_corto, longitudes = encontrar_ruta_mas_corta(rutas)
-
-# Mostrar información sobre todas las rutas
-if len(rutas) > 1:
-    print("\n📏 Longitud de cada ruta:")
-    for i, longitud in enumerate(longitudes):
-        if i == indice_mas_corto:
-            print(f"   Ruta {i + 1}: {longitud} pasos 🏆 (MÁS CORTA)")
-        else:
-            print(f"   Ruta {i + 1}: {longitud} pasos")
-elif len(rutas) == 1:
-    print(f"ℹ Solo hay una ruta posible con {longitudes[0]} pasos.")
-else:
-    print("❌ No se encontraron rutas.")
-
-# Primero mostrar el laberinto con todas las rutas
-dibujar_maze(laberinto, rutas, indice_mas_corto, longitudes)
-
-# Luego mostrar el control manual del cursors
-print("\n🎮 Iniciando control manual del cursor...")
-print("Usa las teclas de dirección (↑ ↓ ← →) para mover el cursor por el laberinto.")
-print("Presiona 'r' para reiniciar y 'q' para salir.")
-control_manual_cursor(laberinto, rutas, indice_mas_corto, longitudes)
